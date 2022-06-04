@@ -8,10 +8,12 @@ module.exports = (sequelize) => {
         },
         active : {
             type : DataTypes.BOOLEAN,
+            defaultValue : false,
             allowNull : false
         },
         completed : {
             type : DataTypes.BOOLEAN,
+            defaultValue : false,
             allowNull : false    
         }
     })
