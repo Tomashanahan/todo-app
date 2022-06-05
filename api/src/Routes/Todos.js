@@ -29,16 +29,8 @@ router.post("/create", async (req, res) => {
 router.put("/update", async (req, res) => {
 	const { _id, _completed } = req.query;
 	const { id, name, completed, active } = req.body;
-	console.log(_id);
-	console.log(_completed);
-	/* if (_id && _completed) {
-		console.log("en el else if -->", _id);
-		
-		const todo = await Todo.findOne({ where: { id : _id } });
-		todo.completed = todo.completed === true ? false : true;
-		await todo.save();
-		res.json(todo);
-	} else */ if (!id) {
+	
+	if (!id) {
 		res.send("Falto el id!");
 	} else if (!id && !name && !completed && !active) {
 		res.send("Falto informacion!");
@@ -54,7 +46,6 @@ router.put("/update", async (req, res) => {
 		await todo.save();
 		res.json(todo);
 	} else if (id && !name && completed && !active) {
-		console.log("en el else if -->", _id);
 		const todo = await Todo.findOne({ where: { id } });
 		todo.completed = todo.completed === true ? false : true;
 		await todo.save();

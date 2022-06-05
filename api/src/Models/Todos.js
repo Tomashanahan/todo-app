@@ -8,7 +8,7 @@ module.exports = (sequelize) => {
         },
         active : {
             type : DataTypes.BOOLEAN,
-            defaultValue : false,
+            defaultValue : true,
             allowNull : false
         },
         completed : {

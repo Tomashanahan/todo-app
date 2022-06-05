@@ -4,7 +4,6 @@ import Context from "../../Context/Todos/CotextTodos";
 
 function Nabvar() {
 	let seelcted_localStorage = localStorage.getItem("selected");
-	console.log(seelcted_localStorage);
 	const [selected, setSelected] = useState(seelcted_localStorage || "All");
 	const { dispatch, select_status_todos } = useContext(Context);
 
