@@ -10,6 +10,7 @@ const {
 } = process.env
 
 const todos_model = require("./Models/Todos");
+const users_model = require("./Models/Users");
 
 let sequelize =
 	NODE_ENV === "production"
@@ -43,8 +44,9 @@ let sequelize =
 		  );
 
 todos_model(sequelize);
+users_model(sequelize);
 
-const { Todo } = sequelize.models;
+const { Todo, User } = sequelize.models;
 
 module.exports = {
     ...sequelize.models,

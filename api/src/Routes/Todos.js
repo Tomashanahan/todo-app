@@ -79,4 +79,17 @@ router.delete("/delete", async (req, res) => {
 	}
 });
 
+router.delete("/delete/allCompleted", async (req, res) => {
+	try {
+		const deleted_todo = await Todo.destroy({ where: { completed : true } });
+		if (deleted_todo >= 1) {
+			res.send("Todo eliminado con exito");
+		} else {
+			res.send("Hubo un error");
+		}
+	} catch (error) {
+		console.log(error);
+	}
+});
+
 module.exports = router;

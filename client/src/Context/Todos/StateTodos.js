@@ -8,6 +8,7 @@ import {
 	PUT_TODOS,
 	DELETE_TODOS,
 	TODOS_STATUS_SELECTED,
+	DELETE_ALL_COMPLETED_TODOS,
 } from "../Actions";
 
 const TodoState = ({ children }) => {
@@ -54,6 +55,13 @@ const TodoState = ({ children }) => {
 		});
 	}
 
+	async function delete_all_completed_todos() {
+		await axios.delete(`http://localhost:3001/todos/delete/allCompleted`);
+		dispatch({
+			type: DELETE_ALL_COMPLETED_TODOS,
+		});
+	}
+
 	function select_status_todos(status) {
 		return {
 			type: TODOS_STATUS_SELECTED,
@@ -71,6 +79,7 @@ const TodoState = ({ children }) => {
 				post_todos,
 				put_todos,
 				select_status_todos,
+				delete_all_completed_todos,
 			}}
 		>
 			{children}

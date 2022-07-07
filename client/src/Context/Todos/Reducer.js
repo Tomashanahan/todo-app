@@ -4,6 +4,7 @@ import {
 	PUT_TODOS,
 	DELETE_TODOS,
 	TODOS_STATUS_SELECTED,
+    DELETE_ALL_COMPLETED_TODOS,
 } from "../Actions";
 
 export const reducer = (state, { type, payload }) => {

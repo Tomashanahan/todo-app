@@ -6,14 +6,21 @@ import { Box, Button, Checkbox, Flex, Stack } from "@chakra-ui/react";
 import { MdDeleteOutline } from "react-icons/md";
 
 function Todos() {
-	const { state, dispatch, get_todos, put_todos } = useContext(Context);
+	const {
+		state,
+		dispatch,
+		get_todos,
+		put_todos,
+		delete_todos,
+		delete_all_completed_todos,
+	} = useContext(Context);
 
 	useEffect(() => {
 		dispatch(get_todos());
 	}, [state.todos_status_selected]);
 
 	return (
-		<Stack mt="33px" mb='100px'>
+		<Stack mt="33px" mb="100px">
 			{state.todos?.length > 0 && state.todos_status_selected === "All" ? (
 				state.todos.map((elem) => {
 					return (
@@ -62,7 +69,7 @@ function Todos() {
 				<Stack>
 					{state.todos_completed.map((elem) => {
 						return (
-							<Box key={elem.id} /* mb='37px' */>
+							<Box key={elem.id}>
 								<Flex justify={"space-between"} align="center">
 									<Box
 										textAlign="left"
@@ -82,7 +89,15 @@ function Todos() {
 											{elem.name}
 										</Checkbox>
 									</Box>
-									<Box fontSize={"18px"} color="#BDBDBD" cursor="pointer">
+									<Box
+										fontSize={"18px"}
+										color="#BDBDBD"
+										cursor="pointer"
+										onClick={() => {
+											dispatch(delete_todos(elem.id));
+											window.location.reload();
+										}}
+									>
 										<MdDeleteOutline />
 									</Box>
 								</Flex>
@@ -91,14 +106,18 @@ function Todos() {
 					})}
 					{state.todos_completed.length > 0 && (
 						<Button
-							style={{marginTop : '37px'}}
+							style={{ marginTop: "37px" }}
 							bg="#EB5757"
 							color="#FFFFFF"
 							fontSize={"12px"}
 							w="124px"
 							h="40px"
 							alignSelf={"flex-end"}
-							_hover={{bg : '#EB5757'}}
+							_hover={{ bg: "#EB5757" }}
+							onClick={() => {
+								dispatch(delete_all_completed_todos());
+								window.location.reload();
+							}}
 						>
 							<MdDeleteOutline />
 							delete all
