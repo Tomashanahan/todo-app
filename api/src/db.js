@@ -48,6 +48,9 @@ users_model(sequelize);
 
 const { Todo, User } = sequelize.models;
 
+User.hasMany(Todo)
+Todo.belongsTo(User)
+
 module.exports = {
     ...sequelize.models,
     db : sequelize
